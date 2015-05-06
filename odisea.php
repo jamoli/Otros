@@ -104,8 +104,8 @@ class Odisea extends Api{
 				<SOLICITUD numero="1">
 					<PARAMETRO nombre="EC" valor="'.$this->ec.'"/>
 					<PARAMETRO multiple="1" nombre="PR" valor="'.$provincia.'"/>
-					<PARAMETRO nombre="FD" valor="'.$desde.' 00:00:00"/>
-					<PARAMETRO nombre="FH" valor="'.$hasta.' 23:59:59"/>
+					<PARAMETRO nombre="FD" valor="'.$desde.'"/>
+					<PARAMETRO nombre="FH" valor="'.$hasta.'"/>
 					<PARAMETRO nombre="SI" valor="'.$sistema.'"/>
 					<PARAMETRO multiple="1" nombre="ES" valor="PT"/>
 					<PARAMETRO multiple="1" nombre="ES" valor="AS"/>
