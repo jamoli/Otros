@@ -11,20 +11,20 @@
  */
 class Odisea extends Api{
 	/**
- 	* Cabeceras para enviar a Visord	
+ 	* Cabeceras a enviar	
  	* var string
  	*/
-    public $header;
+        public $header;
 	
 	
 	/**
 	* Constructor de la clase. Inicializa los datos de login de eagora
 	* @param  null        
-    *
+        *
 	**/
 	public function __construct(){
 		parent::$this->headers  = $this->headerOdisea;  //Incializar los headers para Odisea
-    }
+        }
 	
 	
 	/**
@@ -32,19 +32,19 @@ class Odisea extends Api{
 	* 
 	* @param  $sistema  	MA(03): VisorD, A0(04): AtlasPA, UI(02): Winest, M1(05): Sam     
 	* @param  $provinica	Codigo de dos dígitos de la provincia a descargar
-	* @param  $desde 		Fecha desque que se quiere realizar la consulta
-	* @param  $hasta 		Fecha hasta que se quiere realizar la consulta  
+	* @param  $desde 	Fecha desque que se quiere realizar la consulta
+	* @param  $hasta 	Fecha hasta que se quiere realizar la consulta  
 	* @return ObjectREST	Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
 	public function consulta_actividad_odisea($user,$pass,$sistema,$provincia,$desde,$hasta){
-		$servicio = "ConsultaActividad"; 
+		$servicio         = "ConsultaActividad"; 
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
 		$this->app   	  = "odisea";
 		$this->login 	  = $user.":".$pass;
 		$this->base_url   = $this->server_addr;
-		$this->url		  = "https://eagora.telefonica.es/od/servlet/ControlerEjecutor";
+		$this->url	  = "https://eagora.telefonica.es/od/servlet/ControlerEjecutor";
 		$this->file 	  = $this->dirFiles.time()."-".$servicio.".xml";
 		$this->httpdata   = 'nombre=&validar=true&accion=373&servicio='.$servicio.'&xml=<?xml version="1.0" encoding="ISO-8859-1"?>
 		<SERVICIO_XML_ODISEA>
@@ -56,11 +56,10 @@ class Odisea extends Api{
 				<SOLICITUD numero="1">
 					<PARAMETRO nombre="EC" valor="'.$this->ec.'"/>
 					<PARAMETRO multiple="1" nombre="PR" valor="'.$provincia.'"/>
-					<PARAMETRO nombre="FD" valor="'.$desde.' 00:00:00"/>
-					<PARAMETRO nombre="FH" valor="'.$hasta.' 23:59:59"/>
+					<PARAMETRO nombre="FD" valor="'.$desde.'"/>
+					<PARAMETRO nombre="FH" valor="'.$hasta.'"/>
 					<PARAMETRO nombre="SI" valor="'.$sistema.'"/>
 				</SOLICITUD>
-		
 			</MENSAJE>
 		</SERVICIO_XML_ODISEA>';
 		$this->http_rsp = $this->post(); 
@@ -87,7 +86,7 @@ class Odisea extends Api{
 	* @access public
 	**/
 	public function consulta_actividad_pendiente_odisea($user,$pass,$sistema,$provincia,$desde,$hasta){
-		$servicio = "ConsultaActividad";
+		$servicio         = "ConsultaActividad";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
 		$this->app   	  = "odisea";
@@ -139,7 +138,7 @@ class Odisea extends Api{
 	* @access public
 	**/
 	public function consulta_boletin_odisea($user,$pass,$idOdisea){
-		$servicio = "ConsultaBoletines";
+		$servicio         = "ConsultaBoletines";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
 		$this->app   	  = "odisea";
@@ -148,7 +147,6 @@ class Odisea extends Api{
 		$this->base_url   = $this->server_addr;
 		$this->url        = "https://eagora.telefonica.es/od/servlet/ControlerEjecutor";
 		$this->file 	  = $this->dirFiles.time()."-".$servicio.".xml";
-		
 		$xml= '<?xml version="1.0" encoding="ISO-8859-1"?>
 		<SERVICIO_XML_ODISEA>
 			<CABECERA>
@@ -199,7 +197,6 @@ class Odisea extends Api{
 		return $this->response();
 	}
 	
-	
 	/**
 	* Consulta las notas de una actuación en Odisea
 	* 
@@ -210,31 +207,29 @@ class Odisea extends Api{
 	* @access public
 	**/
 	public function consultar_nota_odisea($user, $pass, $idOdisea){
-		$servicio 		  = "ServicioNotas";
+		$servicio 	  = "ServicioNotas";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
 		$this->app   	  = "odisea";
 		$this->login 	  = $user.":".$pass;
 		$this->headers 	  = $this->headerOdisea; //Es necedsario crear una nueva session
 		$this->base_url   = $this->server_addr;
-		$this->url		  = "https://eagora.telefonica.es/od/servlet/ControlerEjecutor";
+		$this->url	  = "https://eagora.telefonica.es/od/servlet/ControlerEjecutor";
 		$this->file 	  = $this->dirFiles.time()."-".$servicio.".xml";
-		
-		$xml= '<?xml version="1.0" encoding="ISO-8859-1"?>
+		$xml = '<?xml version="1.0" encoding="ISO-8859-1"?>
 		<SERVICIO_XML_ODISEA>
 			<CABECERA>
 				<ID_SERVICIO nom_servicio="'.$servicio.'" version_servicio="100.001"/>
 				<ID_LLAMANTE nombre="'.$user.$this->ec.'"/>
 			</CABECERA>
 			<MENSAJE>
-				<SOLICITUD numero="1">
-					 <PARAMETRO nombre="OP" valor="CO"/>
-            		 <PARAMETRO nombre="COOD" valor="'.$idOdisea.'"/>
-				</SOLICITUD>
+			<SOLICITUD numero="1">
+				<PARAMETRO nombre="OP" valor="CO"/>
+            		 	<PARAMETRO nombre="COOD" valor="'.$idOdisea.'"/>
+			</SOLICITUD>
 			</MENSAJE>
 		</SERVICIO_XML_ODISEA>';
 		$this->httpdata = 'origen=378&nombre=&validar=true&accion=373&servicio='.$servicio.'&volver=servicios&xml='.$xml;
-		
 		return $this->response();
 	}
 	
@@ -243,13 +238,13 @@ class Odisea extends Api{
 	* 
 	* @param  string      $user  	    Usuario de Odisea   
 	* @param  string      $pass  	    Password de Odisea   
-	* @param  string      $idOdisea  	ID_Odisea, identificador clave de la actividad en Odisea   
+	* @param  string      $idOdisea     ID_Odisea, identificador clave de la actividad en Odisea   
 	* @param  string      $nota  	    Texto con la nota a insertar en la actuación definida por el IdOdisea    
 	* @return ObjectREST  Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
 	public function asignar_nota_odisea($user, $pass, $idOdisea, $nota){
-		$servicio = "ServicioNotas";
+		$servicio         = "ServicioNotas";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
 		$this->app   	  = "odisea";
@@ -257,7 +252,7 @@ class Odisea extends Api{
 		$this->headers 	  = $this->headerOdisea; //Es necedsario crear una nueva session
 		$nota = urlencode(base64_decode($nota));
 		$this->base_url   = $this->server_addr;
-		$this->url="https://eagora.telefonica.es/od/servlet/ControlerEjecutor";
+		$this->url        = "https://eagora.telefonica.es/od/servlet/ControlerEjecutor";
 		$this->file 	  = $this->dirFiles.time()."-".$servicio.".xml";
 		//<!-- indicador de confidencialidad: P-publico,C-confidencial,R-restringido -->
 		$xml= '<?xml version="1.0" encoding="ISO-8859-1"?>
@@ -267,16 +262,15 @@ class Odisea extends Api{
 				<ID_LLAMANTE nombre="'.$user.$this->ec.'"/>
 			</CABECERA>
 			<MENSAJE>
-				<SOLICITUD numero="1">
-					<PARAMETRO nombre="OP" valor="CR"/>
-					<PARAMETRO nombre="COOD" valor="'.$idOdisea.'"/>
-					<PARAMETRO nombre="MSG" valor="'.$nota.'"/>
-					<PARAMETRO nombre="IC" valor="P"/> 
+			<SOLICITUD numero="1">
+				<PARAMETRO nombre="OP" valor="CR"/>
+				<PARAMETRO nombre="COOD" valor="'.$idOdisea.'"/>
+				<PARAMETRO nombre="MSG" valor="'.$nota.'"/>
+				<PARAMETRO nombre="IC" valor="P"/> 
         		</SOLICITUD>
 			</MENSAJE>
 		</SERVICIO_XML_ODISEA>';
 		$this->httpdata = 'origen=378&nombre=&validar=true&accion=373&servicio='.$servicio.'&volver=servicios&xml='.$xml;		
-		
 		return $this->response();
 	}
 	
@@ -285,15 +279,15 @@ class Odisea extends Api{
 	* 
 	* @param  string      $user  	    	Usuario de Odisea   
 	* @param  string      $pass  	    	Password de Odisea   
-	* @param  string      $idOdisea  		ID_Odisea, identificador clave de la actividad en Odisea    
+	* @param  string      $idOdisea  	ID_Odisea, identificador clave de la actividad en Odisea    
 	* @param  string      $estado  	    	AS(Asignar), PR(Preasignar), LI(Liberar). NOTA AS: No se puede deshacer una vez asignado
-	* @param  string      $matricula  		Matricula de Odisea del técnico que se desea liberar
+	* @param  string      $matricula  	Matricula de Odisea del técnico que se desea liberar
 	* @param  string      $observaciones  	Necesarias en caso de una liberación
 	* @return ObjectREST  Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
 	public function cambiar_estado($user, $pass, $idOdisea, $estado, $matricula='', $observaciones=''){
-		$servicio = "CambiarEstado";
+		$servicio         = "CambiarEstado";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
 		$this->app   	  = "odisea";
@@ -310,12 +304,12 @@ class Odisea extends Api{
 				<ID_LLAMANTE nombre="'.$user.$this->ec.'"/>
 			</CABECERA>
 			<MENSAJE>
-				<SOLICITUD numero="1">
-            		<PARAMETRO nombre="ES" valor="'.$estado.'"/>
-            		<PARAMETRO nombre="COOD" valor="'.$idOdisea.'"/>
-            		<PARAMETRO nombre="EC" valor="'.$this->ec.'"/>
-            		<PARAMETRO nombre="MT" valor="'.$matricula.'"/>
-            		<PARAMETRO nombre="OB" valor="'.utf8_encode($observaciones).'"/>
+			<SOLICITUD numero="1">
+            			<PARAMETRO nombre="ES" valor="'.$estado.'"/>
+            			<PARAMETRO nombre="COOD" valor="'.$idOdisea.'"/>
+            			<PARAMETRO nombre="EC" valor="'.$this->ec.'"/>
+            			<PARAMETRO nombre="MT" valor="'.$matricula.'"/>
+            			<PARAMETRO nombre="OB" valor="'.utf8_encode($observaciones).'"/>
         		</SOLICITUD>
 			</MENSAJE>
 		</SERVICIO_XML_ODISEA>';
