@@ -83,8 +83,8 @@ class Odisea extends Api
 	* 
 	* @param  $sistema  	MA(03): VisorD, A0(04): AtlasPA, UI(02): Winest, M1(05): Sam     
 	* @param  $provinica	Codigo de dos dígitos de la provincia a descargar
-	* @param  $desde 		Fecha desque que se quiere realizar la consulta
-	* @param  $hasta 		Fecha hasta que se quiere realizar la consulta  
+	* @param  $desde 	Fecha desque que se quiere realizar la consulta
+	* @param  $hasta 	Fecha hasta que se quiere realizar la consulta  
 	* @return ObjectREST	Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
@@ -207,7 +207,7 @@ class Odisea extends Api
 	* 
 	* @param  string      $user  	    Usuario de Odisea   
 	* @param  string      $pass  	    Password de Odisea   
-	* @param  string      $idOdisea  	ID_Odisea, identificador clave de la actividad en Odisea    
+	* @param  string      $idOdisea     ID_Odisea, identificador clave de la actividad en Odisea    
 	* @return ObjectREST  Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
