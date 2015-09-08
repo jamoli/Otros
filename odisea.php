@@ -4,12 +4,13 @@
  * Impelmentación de los métodos de iteracción con Odisea
  *
  * @category   Odisea
-   @package    api
+ * @package    api
  * @author     Juan Antonio Latorre Molina <ja.latorre@cotronic.es>
  * @copyright  2014 Sielte - Cotronic
  * @version    1.0.1
  */
-class Odisea extends Api{
+class Odisea extends Api
+{
 	/**
  	* Cabeceras a enviar	
  	* var string
@@ -22,7 +23,8 @@ class Odisea extends Api{
 	* @param  null        
         *
 	**/
-	public function __construct(){
+	public function __construct()
+	{
 		parent::$this->headers  = $this->headerOdisea;  //Incializar los headers para Odisea
         }
 	
@@ -37,7 +39,8 @@ class Odisea extends Api{
 	* @return ObjectREST	Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
-	public function consulta_actividad_odisea($user,$pass,$sistema,$provincia,$desde,$hasta){
+	public function consulta_actividad_odisea($user,$pass,$sistema,$provincia,$desde,$hasta)
+	{
 		$servicio         = "ConsultaActividad"; 
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
@@ -85,7 +88,8 @@ class Odisea extends Api{
 	* @return ObjectREST	Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
-	public function consulta_actividad_pendiente_odisea($user,$pass,$sistema,$provincia,$desde,$hasta){
+	public function consulta_actividad_pendiente_odisea($user,$pass,$sistema,$provincia,$desde,$hasta)
+	{
 		$servicio         = "ConsultaActividad";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
@@ -137,7 +141,8 @@ class Odisea extends Api{
 	* @return ObjectREST	Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
-	public function consulta_boletin_odisea($user,$pass,$idOdisea){
+	public function consulta_boletin_odisea($user,$pass,$idOdisea)
+	{
 		$servicio         = "ConsultaBoletines";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
@@ -206,7 +211,8 @@ class Odisea extends Api{
 	* @return ObjectREST  Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
-	public function consultar_nota_odisea($user, $pass, $idOdisea){
+	public function consultar_nota_odisea($user, $pass, $idOdisea)
+	{
 		$servicio 	  = "ServicioNotas";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
@@ -243,7 +249,8 @@ class Odisea extends Api{
 	* @return ObjectREST  Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
-	public function asignar_nota_odisea($user, $pass, $idOdisea, $nota){
+	public function asignar_nota_odisea($user, $pass, $idOdisea, $nota)
+	{
 		$servicio         = "ServicioNotas";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
@@ -286,7 +293,8 @@ class Odisea extends Api{
 	* @return ObjectREST  Objeto en json, xml con los datos de la respuesta y la url donde se ha descarga el fichero
 	* @access public
 	**/
-	public function cambiar_estado($user, $pass, $idOdisea, $estado, $matricula='', $observaciones=''){
+	public function cambiar_estado($user, $pass, $idOdisea, $estado, $matricula='', $observaciones='')
+	{
 		$servicio         = "CambiarEstado";
 		$this->UserEagora = $user;
 		$this->PassEagora = $pass;
