@@ -325,4 +325,3 @@ class Odisea extends Api
 		return $this->response();
 	}
 }
-?>
